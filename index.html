@@ -1,0 +1,1339 @@
+<html>
+
+<head>
+    <title>RainWater Harvesting</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        button,
+        nav {
+            font-family: 'Poppins', sans-serif;
+            color: #166534;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 3rem;
+        }
+
+        p {
+            line-height: 1.7;
+        }
+
+
+        nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btns {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        nav {
+            background-color: rgb(28, 26, 26);
+            color: white;
+
+            width: 280px;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        nav a {
+            margin-top: 0.1rem;
+            color: aliceblue;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: 1s ease-in;
+        }
+
+        nav a:hover {
+            margin-top: 0.1rem;
+            color: aliceblue;
+            text-decoration: underline;
+
+
+        }
+
+        #head {
+            font-size: 2.5rem;
+        }
+
+        .main {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            box-sizing: border-box;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #main-img {
+            /* margin-left: 35vh; */
+            width: min(80vw, 900px);
+            height: 70vh;
+            object-fit: contain;
+        }
+
+        #logo {
+            margin-top: 0.2rem;
+        }
+
+        #head-btn {
+            margin-top: 1rem;
+
+        }
+
+        #head2 {
+            margin: 0;
+            margin-top: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .methods,
+        .construction-guide {
+            margin-left: 320px;
+            width: calc(100% - 360px);
+            box-sizing: border-box;
+        }
+
+        .methods h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            color: #166534;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .method {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #16a34a;
+            background: #f0fdf4;
+            border-radius: 8px;
+        }
+
+        .method h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #166534;
+            font-size: 22px;
+        }
+
+        .method p {
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        /* .construction-guide {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 25px;
+            font-family: 'Open Sans', sans-serif;
+            color: #263238;
+        } */
+
+        .construction-guide h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #166534;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .guide-intro {
+            text-align: center;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .guide-step,
+        .guide-section {
+            padding: 24px;
+            margin-bottom: 22px;
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            border-radius: 10px;
+        }
+
+        .guide-step h2,
+        .guide-section h2,
+        .guide-note h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #166534;
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        .guide-step p,
+        .guide-section p,
+        .guide-note p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .guide-section ul {
+            padding-left: 24px;
+            line-height: 2;
+        }
+
+        .guide-note {
+            padding: 24px;
+            border: 1px solid #f59e0b;
+            background: #fffbeb;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .construction-guide {
+                padding: 15px;
+                margin: 30px auto;
+            }
+
+            .construction-guide h1 {
+                font-size: 28px;
+            }
+
+            .guide-step,
+            .guide-section,
+            .guide-note {
+                padding: 18px;
+            }
+        }
+
+        .calc {
+            margin-left: 320px;
+            width: calc(100% - 360px);
+            box-sizing: border-box;
+        }
+
+        .calc {
+            max-width: 1100px;
+            margin-top: 50px;
+            margin-bottom: 70px;
+            padding: 0 24px;
+            color: #1f2937;
+        }
+
+        .calc h1 {
+            margin-bottom: 10px;
+        }
+
+        .calc-intro {
+            max-width: 680px;
+            margin: 0 auto 28px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .calculator-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+            gap: 28px;
+            padding: 30px;
+            background: #ffffff;
+            border: 1px solid #dcfce7;
+            border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(22, 101, 52, 0.1);
+            text-align: left;
+        }
+
+        .calculator-form h2,
+        .result-panel h2 {
+            margin: 0 0 22px;
+            color: #166534;
+            font-size: 1.35rem;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .field-group label {
+            color: #334155;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .field-group input,
+        .field-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            background: #f8fafc;
+            color: #1e293b;
+            font: inherit;
+        }
+
+        .field-group input:focus,
+        .field-group select:focus {
+            outline: 3px solid rgba(34, 197, 94, 0.2);
+            border-color: #16a34a;
+        }
+
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            margin-top: 6px;
+            padding: 14px 20px;
+            border: 0;
+            border-radius: 9px;
+            background: #16a34a;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .calculate-btn:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .result-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 26px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, #166534, #15803d);
+            color: white;
+        }
+
+        .result-panel h2 {
+            color: white;
+        }
+
+        .result-label {
+            margin: 0;
+            color: #bbf7d0;
+            font-size: 0.9rem;
+        }
+
+        .result-value {
+            margin: 4px 0 20px;
+            font-size: clamp(2.1rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .result-details {
+            margin: 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            color: #dcfce7;
+            font-size: 0.95rem;
+        }
+
+        .form-error {
+            min-height: 1.3em;
+            margin: 10px 0 0;
+            color: #b91c1c;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+
+            nav .btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                padding: 0.7rem 0.8rem;
+            }
+
+            .main,
+            .methods,
+            .construction-guide,
+            .calc {
+                width: 100%;
+                margin-left: 0 !important;
+            }
+
+            .main {
+                padding: 24px;
+            }
+
+            #main-img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .calculator-card {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .dimension-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ml35 {
+            margin-left: 50vh;
+        }
+
+        #gif {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 50vh;
+        }
+
+        .calc-card {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            border-radius: 10px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
+            box-sizing: border-box;
+        }
+
+        .calc-card h2 {
+            color: #166534;
+            font-family: 'Poppins', sans-serif;
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .calc-card>p {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .calc-card label {
+            display: block;
+            color: #166534;
+            font-weight: 600;
+            margin: 15px 0 6px;
+        }
+
+        .calc-card input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #bbf7d0;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background: #fff;
+            color: #1f2937;
+            font: inherit;
+        }
+
+        .calc-card input:focus {
+            outline: 2px solid #16a34a;
+            outline-offset: 1px;
+        }
+
+        .calc-card button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #166534;
+            color: #fff;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .calc-card button:hover {
+            background: #15803d;
+        }
+
+        .calc-result {
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 7px;
+            background: #fff;
+            border: 1px solid #bbf7d0;
+            color: #374151;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .calc-result strong {
+            color: #166534;
+            font-size: 18px;
+        }
+
+        .calc-result p {
+            margin: 6px 0 0;
+        }
+
+        .calc-card details {
+            margin-top: 16px;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .calc-card summary {
+            color: #166534;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .calc-card {
+            margin-left: 50vh;
+        }
+
+        @media (max-width: 600px) {
+            .calc-card {
+                padding: 18px;
+            }
+
+            .calc-card h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div id="logo" style="text-align: center;">Rainwater.</div>
+        <div class="btns" style="justify-content: center;">
+            <a id="head-btn" href="#top">Home</a>
+            <a href="#methods">Methods</a>
+            <a href="#construction">Construction</a>
+            <a href="#calc">Calculations</a>
+            <a href="#gov-support">Gov Support</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <div class="main" id="top">
+        <h1 id="head">Save Rain Today, Secure Water Tomorrow</h1>
+        <img id="main-img"
+            src="https://media.geeksforgeeks.org/wp-content/uploads/20231108115542/Rainwater-Harvesting.png"
+            alt="Illustration of a rooftop rainwater harvesting system">
+        <br><br>
+        <h2 id="head2">Every Drop Counts — Save Water, Save Life</h2>
+        <h2>Harvest Rainwater, Build a Better Future</h2>
+        <p>Water is one of the most precious resources on Earth, yet millions of people face water shortages every year.
+            Rainwater harvesting is a simple, eco-friendly solution that helps us collect and store rainwater for future
+            use instead of letting it go to waste.
+            By collecting rainwater from rooftops and other suitable surfaces, we can reduce water wastage, recharge
+            groundwater, support agriculture, and create a more sustainable environment. Every home, school, college,
+            and community can contribute to water conservation by adopting rainwater harvesting practices.</p>
+        <div id="gif">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY25zc3pxZDhnaWl5Z2hkNXBsenRoZGcwNjIwenhidGN3cGYwdHU1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YPo19uXDUDipgON8pb/giphy.gif"
+                alt="Rainwater Gif">
+        </div>
+    </div>
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+
+    <section class="methods" id="methods">
+        <h1 style="font-size: 3rem;">Methods of Rainwater Harvesting</h1>
+        <p class="intro">
+            Rainwater harvesting can be done in different ways depending on
+            the available space, rainfall, and water requirements. The main
+            methods help collect, store, and conserve rainwater for future use.
+        </p>
+
+
+        <div class="method">
+            <h2>1. Rooftop Rainwater Harvesting</h2>
+            <p>
+                Rooftop rainwater harvesting involves collecting rainwater
+                from rooftops using gutters and pipes. The collected water
+                passes through filters and is stored in tanks for later use.
+                It is one of the simplest methods for homes, schools, and
+                commercial buildings.
+            </p>
+        </div>
+
+        <div class="method">
+            <h2>2. Surface Runoff Harvesting</h2>
+            <p>
+                Surface runoff harvesting collects rainwater that flows
+                over the ground during rainfall. This water is directed into
+                ponds, reservoirs, or storage structures. It is especially
+                useful for agriculture, community water supplies, and
+                managing rainwater in open areas.
+            </p>
+        </div>
+
+        <div class="method">
+            <h2>3. Groundwater Recharge</h2>
+            <p>
+                Groundwater recharge allows rainwater to seep into the soil
+                and replenish underground water reserves. Recharge pits,
+                trenches, and suitable recharge wells can be used for this
+                purpose. Proper filtration and site assessment are important
+                to prevent groundwater contamination.
+            </p>
+        </div>
+
+        <div class="method">
+            <h2>4. Rainwater Storage Tanks</h2>
+            <p>
+                In this method, rainwater is collected from rooftops or
+                other suitable surfaces and stored in tanks for future use.
+                The stored water can be used for gardening, cleaning,
+                washing, and irrigation, depending on its quality and
+                intended purpose.
+            </p>
+        </div>
+
+        <div class="method">
+            <h2>5. Recharge Pits and Trenches</h2>
+            <p>
+                Recharge pits and trenches are structures designed to
+                collect filtered rainwater and help it infiltrate into
+                the ground. They are useful in suitable locations where
+                soil conditions allow water to percolate effectively.
+                Regular maintenance prevents blockage and improves
+                performance.
+            </p>
+        </div>
+
+        <div class="method">
+            <h2>6. Traditional Rainwater Harvesting</h2>
+            <p>
+                Traditional systems such as tankas, johads, kunds, and
+                baoris have been used for generations, especially in
+                Rajasthan. These structures collect or store rainwater
+                and demonstrate how local communities have adapted to
+                water scarcity and dry climatic conditions.
+            </p>
+        </div>
+    </section>
+
+    <section class="construction-guide" id="construction">
+
+        <h1>Rainwater Harvesting Construction Guide</h1>
+
+        <p class="guide-intro">
+            Building a rainwater harvesting system is an effective way
+            to conserve water and reduce water wastage. Follow this
+            step-by-step guide to understand how to plan, construct,
+            and maintain a basic rooftop rainwater harvesting system.
+        </p>
+
+        <!-- Materials Required -->
+        <div class="guide-section">
+            <h2>1. Materials Required</h2>
+            <p>Collect the following materials before starting construction:</p>
+
+            <ul>
+                <li>PVC pipes and connectors</li>
+                <li>Roof gutters and downpipes</li>
+                <li>Rainwater filter or filter mesh</li>
+                <li>First-flush diverter</li>
+                <li>Water storage tank with a lid</li>
+                <li>Gravel, coarse sand, and filter media if required</li>
+                <li>Pipe clamps, sealants, and suitable fittings</li>
+                <li>Overflow pipe and drainage arrangements</li>
+            </ul>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="guide-step">
+            <h2>2. Step 1: Select the Catchment Area</h2>
+            <p>
+                Choose a suitable rooftop or other clean catchment surface.
+                Measure its area and inspect it for dirt, damaged sections,
+                and possible sources of contamination. The roof area and
+                local rainfall help determine how much water can be collected.
+            </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step">
+            <h2>3. Step 2: Install Gutters and Pipes</h2>
+            <p>
+                Install gutters along suitable roof edges to collect rainwater.
+                Connect the gutters to downpipes that direct water towards
+                the filter and storage tank. Secure all pipes properly and
+                provide a suitable slope so water flows without stagnating.
+            </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step">
+            <h2>4. Step 3: Install a First-Flush System</h2>
+            <p>
+                A first-flush diverter directs the initial rainfall away from
+                the storage tank. This helps remove some dust, leaves, and
+                contaminants accumulated on the roof before cleaner rainwater
+                enters the collection system.
+            </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guide-step">
+            <h2>5. Step 4: Set Up the Filtration Unit</h2>
+            <p>
+                Install a suitable filter to remove leaves, debris, and
+                suspended particles. Depending on the system design, filter
+                media may include mesh, gravel, or sand. Filters must be
+                accessible for regular cleaning and maintenance.
+            </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="guide-step">
+            <h2>6. Step 5: Install the Storage Tank</h2>
+            <p>
+                Place a suitable water storage tank on a stable, level base
+                designed to support its full weight when filled. Connect the
+                filtered water inlet and provide a covered, mosquito-proof
+                opening, a suitable overflow pipe, and an accessible cleaning
+                arrangement.
+            </p>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="guide-step">
+            <h2>7. Step 6: Create a Groundwater Recharge Structure</h2>
+            <p>
+                If groundwater recharge is planned instead of storage, a
+                suitable recharge pit or trench may be constructed after
+                assessing the soil, groundwater conditions, and local
+                regulations. Filter incoming water and ensure the structure
+                will not introduce contaminants into groundwater.
+            </p>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="guide-step">
+            <h2>8. Step 7: Test the System</h2>
+            <p>
+                Before regular use, test the system during rainfall or with
+                a controlled water flow. Check pipe joints, filters, tank
+                connections, and overflow drainage for leaks or blockages.
+                Correct any problems before operating the system routinely.
+            </p>
+        </div>
+
+        <!-- Maintenance -->
+        <div class="guide-section">
+            <h2>9. Maintenance and Safety</h2>
+            <ul>
+                <li>Clean rooftops and gutters before the rainy season.</li>
+                <li>Inspect and clean filters regularly.</li>
+                <li>Keep storage tanks covered and mosquito-proof.</li>
+                <li>Check pipes, joints, and overflow outlets for blockages.</li>
+                <li>Never enter a storage tank or pit without proper safety procedures.</li>
+                <li>Test and treat water appropriately before drinking.</li>
+            </ul>
+        </div>
+
+        <div class="guide-note">
+            <h2>Important Note</h2>
+            <p>
+                Construction requirements vary according to roof type, rainfall,
+                soil conditions, groundwater depth, and intended water use.
+                Consult a qualified professional for structural work, large
+                storage tanks, and groundwater recharge designs.
+            </p>
+        </div>
+
+    </section>
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+    <section class="calc" id="calc">
+        <h1 style="text-align: center;">Tank Volume Calculator</h1>
+        <p class="calc-intro">
+            Estimate how much rainwater your tank can hold. Enter the inside
+            dimensions in metres and get the capacity in litres and cubic metres.
+        </p>
+
+        <div class="calculator-card">
+            <form class="calculator-form" id="tank-form">
+                <h2>Tank dimensions</h2>
+                <div class="field-group">
+                    <label for="tank-shape">Tank shape</label>
+                    <select id="tank-shape">
+                        <option value="rectangular">Rectangular tank</option>
+                        <option value="cylindrical">Cylindrical tank</option>
+                    </select>
+                </div>
+
+                <div class="dimension-grid" id="rectangular-fields">
+                    <div class="field-group">
+                        <label for="tank-length">Length (m)</label>
+                        <input id="tank-length" type="number" min="0" step="any" placeholder="e.g. 3" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="tank-width">Width (m)</label>
+                        <input id="tank-width" type="number" min="0" step="any" placeholder="e.g. 2" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="tank-height">Height (m)</label>
+                        <input id="tank-height" type="number" min="0" step="any" placeholder="e.g. 1.5" required>
+                    </div>
+                </div>
+
+                <div class="dimension-grid" id="cylindrical-fields" hidden>
+                    <div class="field-group">
+                        <label for="tank-radius">Radius (m)</label>
+                        <input id="tank-radius" type="number" min="0" step="any" placeholder="e.g. 1">
+                    </div>
+                    <div class="field-group">
+                        <label for="tank-cylinder-height">Height (m)</label>
+                        <input id="tank-cylinder-height" type="number" min="0" step="any" placeholder="e.g. 2">
+                    </div>
+                </div>
+
+                <button class="calculate-btn" type="submit">Calculate volume</button>
+                <p class="form-error" id="form-error" role="alert"></p>
+            </form>
+
+            <div class="result-panel" aria-live="polite">
+                <h2>Your tank capacity</h2>
+                <p class="result-label">Total volume</p>
+                <p class="result-value" id="volume-litres">0 L</p>
+                <p class="result-details" id="volume-cubic">Enter your tank dimensions to see the result.</p>
+            </div>
+        </div>
+    </section>
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+    <div class="calc-card">
+        <h1 style="text-align: center;">Required Roof Area</h1>
+        <p>Find the roof area needed to collect your target rainwater volume.</p>
+
+        <label for="targetLitres">Target water (litres)</label>
+        <input type="number" id="targetLitres" value="50000" min="1">
+
+        <label for="roofRainfall">Expected rainfall (mm)</label>
+        <input type="number" id="roofRainfall" value="600" min="1">
+
+        <label for="roofRunoff">Roof runoff coefficient</label>
+        <input type="number" id="roofRunoff" value="0.85" min="0.01" max="1" step="0.01">
+
+        <label for="roofEfficiency">Collection efficiency (%)</label>
+        <input type="number" id="roofEfficiency" value="90" min="1" max="100">
+
+        <button type="button" onclick="calculateRoofArea()">
+            Calculate Roof Area
+        </button>
+
+        <div class="calc-result" id="roofAreaResult" aria-live="polite">
+            Your required roof area will appear here.
+        </div>
+
+        <details>
+            <summary>Understand this calculation</summary>
+            <p>
+                One millimetre of rainfall on one square metre of roof represents
+                approximately one litre of water before losses. The runoff
+                coefficient accounts for water that does not run off the roof,
+                while collection efficiency accounts for additional system losses.
+            </p>
+        </details>
+    </div>
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+    <div class="calc-card">
+        <h1 style="text-align: center;">Rain Event & Overflow</h1>
+        <p>Estimate rainwater collection and potential tank overflow during a storm.</p>
+
+        <label for="eventRoof">Roof area (m²)</label>
+        <input type="number" id="eventRoof" value="100" min="0.1">
+
+        <label for="eventRainfall">Rainfall during event (mm)</label>
+        <input type="number" id="eventRainfall" value="50" min="0">
+
+        <label for="eventRunoff">Roof runoff coefficient</label>
+        <input type="number" id="eventRunoff" value="0.85" min="0.01" max="1" step="0.01">
+
+        <label for="eventEfficiency">Collection efficiency (%)</label>
+        <input type="number" id="eventEfficiency" value="90" min="1" max="100">
+
+        <label for="eventTankCapacity">Total tank capacity (litres)</label>
+        <input type="number" id="eventTankCapacity" value="5000" min="1">
+
+        <label for="eventCurrentWater">Water already in tank (litres)</label>
+        <input type="number" id="eventCurrentWater" value="2000" min="0">
+
+        <button type="button" onclick="calculateRainEvent()">
+            Calculate Collection & Overflow
+        </button>
+
+        <div class="calc-result" id="rainEventResult" aria-live="polite">
+            Your rainfall and overflow estimates will appear here.
+        </div>
+
+        <details>
+            <summary>Understand this calculation</summary>
+            <p>
+                The estimate uses roof area, rainfall depth, roof runoff,
+                and collection efficiency. Overflow is the estimated collected
+                volume that exceeds the tank's remaining space. Real overflow
+                may differ because of rainfall intensity, drainage restrictions,
+                first-flush diversion, and water leaving the tank during rainfall.
+            </p>
+        </details>
+    </div>
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+    <div class="calc-card">
+        <h1 style="text-align: center;">Household Storage Need</h1>
+        <p>Estimate the tank capacity required for your family.</p>
+
+        <label for="housePeople">Number of people</label>
+        <input type="number" id="housePeople" value="5" min="1" step="1">
+
+        <label for="houseDailyUse">Daily water use per person (litres)</label>
+        <input type="number" id="houseDailyUse" value="100" min="1">
+
+        <label for="houseDays">Days of water storage</label>
+        <input type="number" id="houseDays" value="7" min="1" step="1">
+
+        <label for="houseReserve">Extra reserve (%)</label>
+        <input type="number" id="houseReserve" value="10" min="0" max="100">
+
+        <button type="button" onclick="calculateHouseholdStorage()">
+            Calculate Storage Need
+        </button>
+
+        <div class="calc-result" id="houseStorageResult" aria-live="polite">
+            Your household storage requirement will appear here.
+        </div>
+
+        <details>
+            <summary>Understand this calculation</summary>
+            <p>
+                The calculator multiplies the number of people by daily water use
+                and the number of storage days. It then adds your selected reserve
+                percentage. This estimates demand, not how much rain your roof
+                will collect. Confirm that your rainfall supply can refill the tank.
+            </p>
+        </details>
+    </div>
+
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+
+    <section class="info-section ml35" id="gov-support">
+        <h1 style="font-size: 2.5rem;">Government Support for Rainwater Harvesting</h1>
+
+        <p class="info-intro">
+            Explore government schemes, agricultural subsidies, local authority
+            guidance, and community initiatives that may support rainwater
+            harvesting and water conservation across India, especially Rajasthan.
+        </p>
+
+
+        <div class="support-grid">
+
+            <div class="guide-step">
+                <h2>1. Jal Shakti Abhiyan: Catch the Rain</h2>
+                <p>Promotes rooftop rainwater harvesting, groundwater recharge,
+                    restoration of water bodies, and public participation.
+                    It does not guarantee a cash subsidy for every household.</p>
+                <a href="https://jalshakti-dowr.gov.in/" target="_blank" rel="noopener noreferrer">Official Website
+                    ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>2. MGNREGA Water Conservation</h2>
+                <p>Eligible rural public works may include ponds, water-harvesting
+                    structures, and watershed-related works. Projects require
+                    approval through the programme's local processes.</p>
+                <a href="https://nrega.nic.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>3. Pradhan Mantri Krishi Sinchayee Yojana</h2>
+                <p>Supports eligible irrigation, watershed development, and
+                    water-management activities. Benefits depend on the scheme
+                    component and current state implementation.</p>
+                <a href="https://pmksy.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>4. Atal Bhujal Yojana (Atal Jal)</h2>
+                <p>Focuses on community-led groundwater management and water
+                    security in selected areas. Check for a current extension
+                    or successor programme before applying.</p>
+                <a href="https://ataljal.hid.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>5. AMRUT 2.0</h2>
+                <p>Supports eligible urban water projects and water-body
+                    rejuvenation through urban local bodies. It is not generally
+                    a direct household tank subsidy.</p>
+                <a href="https://amrut.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>6. Jal Sanchay Jan Bhagidari</h2>
+                <p>Encourages community participation in water conservation and
+                    recharge structures. Assistance depends on local projects,
+                    funding arrangements, and implementation.</p>
+                <a href="https://jalshakti-dowr.gov.in/" target="_blank" rel="noopener noreferrer">Official Website
+                    ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>7. Mukhyamantri Jal Swavlamban Abhiyan 2.0</h2>
+                <p>Rajasthan's water-conservation programme supports planned
+                    village-level water-harvesting, watershed, and water-body
+                    works. Contact your Gram Panchayat or district office.</p>
+                <a href="https://rajasthan.gov.in/" target="_blank" rel="noopener noreferrer">Rajasthan Government ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>8. Rajasthan Farm Pond Subsidy (Khet Talai)</h2>
+                <p>Eligible farmers may receive assistance towards approved farm
+                    ponds. Published scheme information lists 60% of approved
+                    cost, up to ₹63,000 for an unlined pond or ₹90,000 for a
+                    plastic-lined pond, whichever is lower. Conditions apply.</p>
+                <a href="https://rajkisan.rajasthan.gov.in/WebsiteNew/farmpound.html" target="_blank"
+                    rel="noopener noreferrer">Check Scheme ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>9. Rajasthan Diggi Construction Assistance</h2>
+                <p>Eligible farmers in qualifying canal-command areas may receive
+                    assistance for irrigation storage structures. Published
+                    information lists 75% of unit cost, up to ₹3 lakh, subject
+                    to current eligibility conditions.</p>
+                <a href="https://rajkisan.rajasthan.gov.in/WebsiteNew/digi.html" target="_blank"
+                    rel="noopener noreferrer">Check Scheme ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>10. Rajasthan Jal Hauz Assistance</h2>
+                <p>Assistance may be available to eligible farmers for approved
+                    agricultural water-storage tanks. Published information lists
+                    60% of cost, up to ₹90,000, subject to capacity and other
+                    requirements.</p>
+                <a href="https://rajkisan.rajasthan.gov.in/WebsiteNew/jalhauz.html" target="_blank"
+                    rel="noopener noreferrer">Check Scheme ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>11. PM-KUSUM Solar Pump Support</h2>
+                <p>Eligible farmers may receive assistance for solar pumps under
+                    applicable scheme components. This supports solar pumping
+                    equipment, not the construction of a rainwater tank.</p>
+                <a href="https://pmkusum.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer">Rajasthan PM-KUSUM
+                    ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>12. Jaipur Development Authority Guidance</h2>
+                <p>JDA provides rainwater-harvesting guidance, standard drawings,
+                    and indicative costs for certain roof-area ranges. Published
+                    cost figures should not be treated as a guaranteed subsidy.</p>
+                <a href="https://www.lsg.urban.rajasthan.gov.in/content/raj/udh/en/UDH/development-authority/jaipur-development-authority/other-initiatives/water-harvesting-recycling.html"
+                    target="_blank" rel="noopener noreferrer">JDA Information ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>13. Local-Body Water and Sanitation Grants</h2>
+                <p>Eligible local bodies may use permitted grants for water and
+                    sanitation priorities. Contact your municipality or Gram
+                    Panchayat to learn about approved local projects.</p>
+                <a href="https://panchayat.gov.in/" target="_blank" rel="noopener noreferrer">Panchayati Raj ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>14. Jal Jeevan Mission</h2>
+                <p>Village water-supply planning may include source sustainability,
+                    groundwater recharge, and water conservation where permitted
+                    under approved plans. It is not an automatic household grant.</p>
+                <a href="https://jaljeevanmission.gov.in/" target="_blank" rel="noopener noreferrer">Official Website
+                    ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>15. Watershed Development Programmes</h2>
+                <p>Eligible agricultural and community projects may include
+                    check dams, ponds, recharge structures, soil-moisture
+                    conservation, and watershed restoration.</p>
+                <a href="https://pmksy.gov.in/" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>16. Building Rules and Rainwater Harvesting</h2>
+                <p>Some building categories and locations may require rainwater
+                    harvesting under applicable regulations. Requirements vary
+                    by property and local authority.</p>
+                <a href="https://urban.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer">Rajasthan Urban
+                    Development ↗</a>
+            </div>
+
+            <div class="guide-step">
+                <h2>17. CSR and Community Funding</h2>
+                <p>Companies, non-profits, and community organisations may support
+                    local water-conservation projects through CSR funding or
+                    donations. Funding is project-specific and not guaranteed.</p>
+                <a href="https://jalshakti-dowr.gov.in/" target="_blank" rel="noopener noreferrer">Explore Water
+                    Initiatives ↗</a>
+            </div>
+
+        </div>
+
+        <div class="guide-step">
+            <h2>How to Apply for Government Support</h2>
+            <ul>
+                <li><strong>Homeowners:</strong> Contact your municipality or
+                    development authority about applicable rules, approved designs,
+                    and any active subsidy.</li>
+                <li><strong>Farmers:</strong> Visit the
+                    <a href="https://rajkisan.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer">Raj Kisan
+                        Portal</a>
+                    or contact your Agriculture Department or e-Mitra centre.
+                </li>
+                <li><strong>Villages and communities:</strong> Contact your Gram
+                    Panchayat, Block Development Office, or district watershed office.</li>
+                <li><strong>Before construction:</strong> Verify eligibility,
+                    application dates, documents, and prior-approval requirements.</li>
+            </ul>
+
+            <p><strong>Important:</strong> Scheme amounts, eligibility, and
+                application periods may change. Verify current details with the
+                responsible government department. Listing a programme here does
+                not guarantee approval, reimbursement, or subsidy.</p>
+        </div>
+    </section>
+
+    <div id="line">
+        <hr style="height: 2px; width: 50%;  align-items: center; background-color: rgb(71, 56, 56);">
+    </div>
+
+    <section class="construction-guide" id="contact">
+        <h1>Contact</h1>
+        <p class="guide-intro">Have a question about your system? Share your requirements with a local water
+            professional before starting structural or groundwater work.</p>
+        <div class="guide-note">
+            <h2>Let's conserve water together</h2>
+            <p>Email your local water department or community sustainability group with your roof area, expected
+                rainfall, and intended water use.</p>
+        </div>
+    </section>
+
+    <script>
+        function calculateRoofArea() {
+            const target = Number(document.getElementById("targetLitres").value);
+            const rainfall = Number(document.getElementById("roofRainfall").value);
+            const runoff = Number(document.getElementById("roofRunoff").value);
+            const efficiency = Number(document.getElementById("roofEfficiency").value) / 100;
+            const result = document.getElementById("roofAreaResult");
+
+            if (
+                !Number.isFinite(target) || target <= 0 ||
+                !Number.isFinite(rainfall) || rainfall <= 0 ||
+                !Number.isFinite(runoff) || runoff <= 0 || runoff > 1 ||
+                !Number.isFinite(efficiency) || efficiency <= 0 || efficiency > 1
+            ) {
+                result.textContent = "Please enter valid positive values. Runoff must be at most 1, and efficiency must be between 1% and 100%.";
+                return;
+            }
+
+            const area = target / (rainfall * runoff * efficiency);
+
+            result.innerHTML = `
+        <strong>Required roof area: ${area.toLocaleString("en-IN", {
+                maximumFractionDigits: 2
+            })} m²</strong>
+        <p>Approximately ${(area * 10.7639).toLocaleString("en-IN", {
+                maximumFractionDigits: 0
+            })} square feet.</p>
+        <p>Estimated gross rainfall volume: ${(area * rainfall).toLocaleString("en-IN", {
+                maximumFractionDigits: 0
+            })} litres.</p>
+    `;
+        }
+
+        function calculateRainEvent() {
+            const roof = Number(document.getElementById("eventRoof").value);
+            const rainfall = Number(document.getElementById("eventRainfall").value);
+            const runoff = Number(document.getElementById("eventRunoff").value);
+            const efficiency = Number(document.getElementById("eventEfficiency").value) / 100;
+            const capacity = Number(document.getElementById("eventTankCapacity").value);
+            const current = Number(document.getElementById("eventCurrentWater").value);
+            const result = document.getElementById("rainEventResult");
+
+            if (
+                !Number.isFinite(roof) || roof <= 0 ||
+                !Number.isFinite(rainfall) || rainfall < 0 ||
+                !Number.isFinite(runoff) || runoff <= 0 || runoff > 1 ||
+                !Number.isFinite(efficiency) || efficiency <= 0 || efficiency > 1 ||
+                !Number.isFinite(capacity) || capacity <= 0 ||
+                !Number.isFinite(current) || current < 0 || current > capacity
+            ) {
+                result.textContent =
+                    "Check your inputs. Roof area and tank capacity must be positive, rainfall and current water cannot be negative, and current water cannot exceed tank capacity.";
+                return;
+            }
+
+            const grossRain = roof * rainfall;
+            const collected = grossRain * runoff * efficiency;
+            const availableSpace = capacity - current;
+            const stored = Math.min(collected, availableSpace);
+            const overflow = Math.max(0, collected - availableSpace);
+            const finalWater = current + stored;
+
+            const format = value => value.toLocaleString("en-IN", {
+                maximumFractionDigits: 1
+            });
+
+            result.innerHTML = `
+        <strong>Estimated water collected: ${format(collected)} litres</strong>
+        <p>Gross rainfall on roof: ${format(grossRain)} litres</p>
+        <p>Tank space available: ${format(availableSpace)} litres</p>
+        <p>Water that fits in tank: ${format(stored)} litres</p>
+        <p>Potential overflow: ${format(overflow)} litres</p>
+        <p>Estimated final tank level: ${format(finalWater)} / ${format(capacity)} litres</p>
+    `;
+        }
+        function calculateHouseholdStorage() {
+            const people = Number(document.getElementById("housePeople").value);
+            const dailyUse = Number(document.getElementById("houseDailyUse").value);
+            const days = Number(document.getElementById("houseDays").value);
+            const reserve = Number(document.getElementById("houseReserve").value);
+            const result = document.getElementById("houseStorageResult");
+
+            if (
+                !Number.isFinite(people) || people < 1 || !Number.isInteger(people) ||
+                !Number.isFinite(dailyUse) || dailyUse <= 0 ||
+                !Number.isFinite(days) || days < 1 || !Number.isInteger(days) ||
+                !Number.isFinite(reserve) || reserve < 0 || reserve > 100
+            ) {
+                result.textContent =
+                    "Enter a whole number of people and days, positive daily water use, and a reserve between 0% and 100%.";
+                return;
+            }
+
+            const dailyHouseholdUse = people * dailyUse;
+            const baseStorage = dailyHouseholdUse * days;
+            const extraReserve = baseStorage * reserve / 100;
+            const totalStorage = baseStorage + extraReserve;
+
+            const format = value => value.toLocaleString("en-IN", {
+                maximumFractionDigits: 1
+            });
+
+            result.innerHTML = `
+        <strong>Recommended estimated capacity: ${format(totalStorage)} litres</strong>
+        <p>Daily household demand: ${format(dailyHouseholdUse)} litres</p>
+        <p>Storage for ${days} days: ${format(baseStorage)} litres</p>
+        <p>Additional reserve: ${format(extraReserve)} litres</p>
+        <p>Equivalent tank volume: ${(totalStorage / 1000).toLocaleString("en-IN", {
+                maximumFractionDigits: 2
+            })} kilolitres (m³)</p>
+    `;
+        }
+
+        const tankForm = document.getElementById("tank-form");
+        const tankShape = document.getElementById("tank-shape");
+        const rectangularFields = document.getElementById("rectangular-fields");
+        const cylindricalFields = document.getElementById("cylindrical-fields");
+        const formError = document.getElementById("form-error");
+        const volumeLitres = document.getElementById("volume-litres");
+        const volumeCubic = document.getElementById("volume-cubic");
+
+        tankShape.addEventListener("change", () => {
+            const isCylinder = tankShape.value === "cylindrical";
+            rectangularFields.hidden = isCylinder;
+            cylindricalFields.hidden = !isCylinder;
+            formError.textContent = "";
+        });
+
+        tankForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const isCylinder = tankShape.value === "cylindrical";
+            const inputIds = isCylinder
+                ? ["tank-radius", "tank-cylinder-height"]
+                : ["tank-length", "tank-width", "tank-height"];
+            const values = inputIds.map((id) => Number(document.getElementById(id).value));
+
+            if (values.some((value) => !Number.isFinite(value) || value <= 0)) {
+                formError.textContent = "Please enter a positive value for every dimension.";
+                return;
+            }
+
+            const cubicMetres = isCylinder
+                ? Math.PI * values[0] ** 2 * values[1]
+                : values[0] * values[1] * values[2];
+            const litres = cubicMetres * 1000;
+
+            formError.textContent = "";
+            volumeLitres.textContent = `${litres.toLocaleString(undefined, {
+                maximumFractionDigits: 1
+            })} L`;
+            volumeCubic.textContent = `${cubicMetres.toLocaleString(undefined, {
+                maximumFractionDigits: 2
+            })} cubic metres`;
+        });
+    </script>
+
+</body>
+
+</html>
